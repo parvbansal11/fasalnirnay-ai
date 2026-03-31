@@ -22,5 +22,57 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    rgba(229, 231, 235, 0.35) 0%,
+    rgba(243, 244, 246, 0.9) 35%,
+    rgba(229, 231, 235, 0.35) 70%
+  );
+  background-size: 300% 100%;
+  animation: skeletonShimmer 1.25s ease-in-out infinite;
+}
+
+.skeleton-shimmer.bg-stone-100\/70 {
+  opacity: 0.95;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.45s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer,
+  .animate-fade-up {
+    animation: none !important;
+  }
 }
